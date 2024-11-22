@@ -79,7 +79,7 @@ public class AdministratorController {
 		administrator.setMailAddress(form.getMailAddress());
 		administrator.setPassword(form.getPassword());
 
-		if(administratorService.existEmail(administrator.getMailAddress())!=null){
+		if(administratorService.findByMailAddress(administrator.getMailAddress())!=null){
 			model.addAttribute("errorMsg", "このメールアドレスは存在しています。");
 			return toInsert();
 		}

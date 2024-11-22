@@ -73,13 +73,21 @@ public class AdministratorController {
 	 * @return ログイン画面へリダイレクト
 	 */
 	@PostMapping("/insert")
-		public String insert(InsertAdministratorForm form, Model model) {
-			Administrator administrator = new Administrator();
+	public String insert(InsertAdministratorForm form, Model model, Model model) {
+		Administrator administrator = new Administrator();
+		administrator.setName(form.getName());
+		administrator.setMailAddress(form.getMailAddress());
+		administrator.setPassword(form.getPassword());
 
-			if(form.getPassword().equals(form.getPasswordConfirm())==false){
-				model.addAttribute("passwordConf", "同じパスワードにしてください。");
-				return toInsert();
-			}
+		if (administratorService.findByMailAddress(administrator.getMailAddress()) != null) {
+			model.addAttribute("errorMsg", "このメールアドレスは存在しています。");
+			return toInsert();
+		}
+
+		if (form.getPassword().equals(form.getPasswordConfirm()) == false) {
+			model.addAttribute("passwordConf", "同じパスワードにしてください。");
+			return toInsert();
+		}
 		// フォームからドメインにプロパティ値をコピー
 		// BeanUtils.copyProperties(form, administrator);
 		administratorService.insert(administrator);

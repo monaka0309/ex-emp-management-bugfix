@@ -37,7 +37,6 @@ public class Administrator {
 		this.name = name;
 		this.mailAddress = mailAddress;
 		this.password = password;
-		this.passwordConfirm = passwordConfirm;
 	}
 
 		public Integer getId() {

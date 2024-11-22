@@ -75,17 +75,13 @@ public class AdministratorController {
 	@PostMapping("/insert")
 		public String insert(InsertAdministratorForm form, Model model) {
 			Administrator administrator = new Administrator();
-			administrator.setName(form.getName());
-			administrator.setMailAddress(form.getMailAddress());
-			administrator.setPassword(form.getPassword());
-			administrator.setPasswordConfirm(form.getPasswordConfirm());
 
 			if(form.getPassword().equals(form.getPasswordConfirm())==false){
 				model.addAttribute("passwordConf", "同じパスワードにしてください。");
 				return toInsert();
 			}
 		// フォームからドメインにプロパティ値をコピー
-		BeanUtils.copyProperties(form, administrator);
+		// BeanUtils.copyProperties(form, administrator);
 		administratorService.insert(administrator);
 		return "redirect:/";
 	}

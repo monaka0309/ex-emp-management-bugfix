@@ -76,6 +76,9 @@ public class AdministratorController {
 	 */
 	@PostMapping("/insert")
 	public String insert(@Validated @ModelAttribute InsertAdministratorForm form, BindingResult result, Model model) {
+		if(result.hasErrors()){
+			return toInsert();
+		}
 		Administrator administrator = new Administrator();
 		// フォームからドメインにプロパティ値をコピー
 		BeanUtils.copyProperties(form, administrator);

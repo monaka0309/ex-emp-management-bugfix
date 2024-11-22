@@ -15,6 +15,8 @@ public class Administrator {
 	private String mailAddress;
 	/** パスワード */
 	private String password;
+	/** 確認用パスワード */
+	private String passwordConfirm;
 
 	/**
 	 * 引数無しのコンストラクタ.
@@ -22,7 +24,7 @@ public class Administrator {
 	public Administrator() {
 	}
 
-	/**
+		/**
 	 * 初期化用コンストラクタ.
 	 * 
 	 * @param id          id(主キー)
@@ -30,49 +32,58 @@ public class Administrator {
 	 * @param mailAddress メールアドレス
 	 * @param password    パスワード
 	 */
-	public Administrator(Integer id, String name, String mailAddress, String password) {
+	public Administrator(Integer id, String name, String mailAddress, String password, String passwordConfirm) {
 		this.id = id;
 		this.name = name;
 		this.mailAddress = mailAddress;
 		this.password = password;
+		this.passwordConfirm = passwordConfirm;
 	}
 
-	public Integer getId() {
-		return id;
-	}
+		public Integer getId() {
+			return id;
+		}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+		public void setId(Integer id) {
+			this.id = id;
+		}
 
-	public String getName() {
-		return name;
-	}
+		public String getName() {
+			return name;
+		}
 
-	public void setName(String name) {
-		this.name = name;
-	}
+		public void setName(String name) {
+			this.name = name;
+		}
 
-	public String getMailAddress() {
-		return mailAddress;
-	}
+		public String getMailAddress() {
+			return mailAddress;
+		}
 
-	public void setMailAddress(String mailAddress) {
-		this.mailAddress = mailAddress;
-	}
+		public void setMailAddress(String mailAddress) {
+			this.mailAddress = mailAddress;
+		}
 
-	public String getPassword() {
-		return password;
-	}
+		public String getPassword() {
+			return password;
+		}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+		public void setPassword(String password) {
+			this.password = password;
+		}
 
-	@Override
-	public String toString() {
-		return "Administrator [id=" + id + ", name=" + name + ", mailAddress=" + mailAddress + ", password=" + password
-				+ "]";
-	}
+		public String getPasswordConfirm() {
+			return passwordConfirm;
+		}
+
+		public void setPasswordConfirm(String passwordConfirm) {
+			this.passwordConfirm = passwordConfirm;
+		}
+
+		@Override
+		public String toString() {
+			return "Administrator [id=" + id + ", name=" + name + ", mailAddress=" + mailAddress + ", password="
+					+ password + ", passwordConfirm=" + passwordConfirm + "]";
+		}
 
 }

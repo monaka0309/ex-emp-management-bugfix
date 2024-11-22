@@ -119,7 +119,6 @@
                         placeholder="password"
                         th:field="*{password}"
                         th:errorclass="error-input"
-                        value="xxxxxxxx"
                       />
                     </div>
                   </div>
@@ -128,22 +127,23 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="col-sm-12">
-                      <label for="password"> 確認用パスワード: </label>
+                      <label for="passwordConfirm"> 確認用パスワード: </label>
                       <label
-                        th:errors="*{password}"
+                        th:errors="*{passwordConfirm}"
                         class="error-messages"
                       >
                         パスワードを入力してください
                       </label>
+                      <p th:if="${#fields.hasErrors('passwordValid')}" th:errors="*{passwordValid}"></p>
+                      <p th:text="${passwordConf}" style="color: red"></p>
                       <input
                         type="password"
-                        name="password"
+                        name="passwordConfirm"
                         id="password"
                         class="form-control"
-                        placeholder="password"
-                        th:field="*{password}"
+                        placeholder="passwordConfirm"
+                        th:field="*{passwordConfirm}"
                         th:errorclass="error-input"
-                        value="xxxxxxxx"
                       />
                     </div>
                   </div>

@@ -1,6 +1,5 @@
 package com.example.controller;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -79,12 +78,17 @@ public class AdministratorController {
 		administrator.setMailAddress(form.getMailAddress());
 		administrator.setPassword(form.getPassword());
 
-		if(administratorService.findByMailAddress(administrator.getMailAddress())!=null){
+		if (administratorService.findByMailAddress(administrator.getMailAddress()) != null) {
 			model.addAttribute("errorMsg", "このメールアドレスは存在しています。");
 			return toInsert();
 		}
+
+		if (form.getPassword().equals(form.getPasswordConfirm()) == false) {
+			model.addAttribute("passwordConf", "同じパスワードにしてください。");
+			return toInsert();
+		}
 		// フォームからドメインにプロパティ値をコピー
-		BeanUtils.copyProperties(form, administrator);
+		// BeanUtils.copyProperties(form, administrator);
 		administratorService.insert(administrator);
 		return "redirect:/";
 	}

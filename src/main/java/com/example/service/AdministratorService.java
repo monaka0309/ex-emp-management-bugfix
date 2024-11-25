@@ -42,8 +42,9 @@ public class AdministratorService {
 	}
 
 	/**
-	 * メールアドレスの存在を確かめる
-	 * @return booleanの結果を返す。
+	 * メールアドレスが存在するか確認する。
+	 * @param mailAddress
+	 * @return Administratorを返す。
 	 */
 	public Administrator findByMailAddress(String mailAddress){
 		return administratorRepository.findByMailAddress(mailAddress);

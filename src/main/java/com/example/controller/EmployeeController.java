@@ -48,8 +48,8 @@ public class EmployeeController {
 	 * @return 従業員一覧画面
 	 */
 	@GetMapping("/showList")
-	public String showList(Model model) {
-		List<Employee> employeeList = employeeService.showList();
+	public String showList(String searchName, Model model) {
+		List<Employee> employeeList = employeeService.showList(searchName);
 		model.addAttribute("employeeList", employeeList);
 		return "employee/list";
 	}

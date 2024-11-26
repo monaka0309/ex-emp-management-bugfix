@@ -89,6 +89,16 @@
         </li>
       </ol>
 
+      <!-- 従業員検索 -->
+      <div>
+        <form th:action="@{/employee/showList}" method="get">
+          <p>従業員検索:
+            <input type="text" name="searchName">
+            <button type="submit">検索</button>
+          </p>
+        </form>
+      </div>
+
       <!-- table -->
       <div class="row">
         <div

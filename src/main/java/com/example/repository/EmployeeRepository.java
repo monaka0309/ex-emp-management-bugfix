@@ -49,12 +49,15 @@ public class EmployeeRepository {
 	 * 
 	 * @return 全従業員一覧 従業員が存在しない場合はサイズ0件の従業員一覧を返します
 	 */
-	public List<Employee> findAll() {
-		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees ORDER BY hire_date ASC, name ASC";
-
-		List<Employee> developmentList = template.query(sql, EMPLOYEE_ROW_MAPPER);
-
-		return developmentList;
+	public List<Employee> findAll(String searchName) {
+		if(searchName != null && searchName != ""){
+			String searchNameSql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees WHERE name LIKE :name ORDER BY hire_date ASC, name ASC";
+			SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%"+searchName+"%");
+			return template.query(searchNameSql, param, EMPLOYEE_ROW_MAPPER);
+		}else{
+			String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees ORDER BY hire_date ASC, name ASC";
+			return template.query(sql, EMPLOYEE_ROW_MAPPER);
+		}
 	}
 
 	/**
